@@ -570,7 +570,7 @@ final class ChatInteraction : InterfaceObserver  {
                 let context = self.context
                 
                 let joinCall:(GroupCallPanelData)->Void = { [weak self] data in
-                    if data.groupCall?.call.peerId != peerId, let peer = self?.peer {
+                    /*if data.groupCall?.call.peerId != peerId, let peer = self?.peer {
                         showModal(with: JoinVoiceChatAlertController(context: context, groupCall: data, peer: peer, join: { [weak self] in
                             if let call = data.info {
                                 self?.joinGroupCall(CachedChannelData.ActiveCall(id: call.id, accessHash: call.accessHash, title: call.title, scheduleTimestamp: call.scheduleTimestamp, subscribedToScheduled: call.subscribedToScheduled, isStream: call.isStream), joinHash)
@@ -580,7 +580,7 @@ final class ChatInteraction : InterfaceObserver  {
                         if let call = data.info {
                             self?.joinGroupCall(CachedChannelData.ActiveCall(id: call.id, accessHash: call.accessHash, title: call.title, scheduleTimestamp: call.scheduleTimestamp, subscribedToScheduled: call.subscribedToScheduled, isStream: call.isStream), joinHash)
                         }
-                    }
+                    }*/
                 }
                 let call: Signal<GroupCallPanelData?, GetCurrentGroupCallError> = context.engine.calls.updatedCurrentPeerGroupCall(peerId: peerId) |> mapToSignalPromotingError { call -> Signal<GroupCallSummary?, GetCurrentGroupCallError> in
                     if let call = call {
@@ -590,9 +590,10 @@ final class ChatInteraction : InterfaceObserver  {
                     }
                 } |> mapToSignal { data in
                     if let data = data {
-                        return context.sharedContext.groupCallContext |> take(1) |> mapToSignalPromotingError { groupCallContext in
+                        /*return context.sharedContext.groupCallContext |> take(1) |> mapToSignalPromotingError { groupCallContext in
                             return .single(GroupCallPanelData(peerId: peerId, info: data.info, topParticipants: data.topParticipants, participantCount: data.info.participantCount, activeSpeakers: [], groupCall: groupCallContext))
-                        }
+                        }*/
+                        return .single(nil)
                     } else {
                         return .single(nil)
                     }

@@ -77,21 +77,21 @@ struct GroupCallPanelData : Equatable {
     let topParticipants: [GroupCallParticipantsContext.Participant]
     let participantCount: Int
     let activeSpeakers: Set<PeerId>
-    private(set) weak var groupCall: GroupCallContext?
+    //private(set) weak var groupCall: GroupCallContext?
     init(
         peerId: PeerId,
         info: GroupCallInfo?,
         topParticipants: [GroupCallParticipantsContext.Participant],
         participantCount: Int,
-        activeSpeakers: Set<PeerId>,
-        groupCall: GroupCallContext?
+        activeSpeakers: Set<PeerId>//,
+        //groupCall: GroupCallContext?
     ) {
         self.peerId = peerId
         self.info = info
         self.topParticipants = topParticipants
         self.participantCount = participantCount
         self.activeSpeakers = activeSpeakers
-        self.groupCall = groupCall
+        //self.groupCall = groupCall
     }
     
     static func ==(lhs: GroupCallPanelData, rhs: GroupCallPanelData) -> Bool {
@@ -107,9 +107,9 @@ struct GroupCallPanelData : Equatable {
         if lhs.activeSpeakers != rhs.activeSpeakers {
             return false
         }
-        if (lhs.groupCall != nil) != (rhs.groupCall != nil) {
+        /*if (lhs.groupCall != nil) != (rhs.groupCall != nil) {
             return false
-        }
+        }*/
         if lhs.participantCount != rhs.participantCount {
             return false
         }

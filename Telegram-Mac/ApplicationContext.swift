@@ -181,6 +181,10 @@ final class AuthorizedApplicationContext: NSObject, SplitViewDelegate {
     
     private var launchAction: ApplicationContextLaunchAction?
     
+    public class GroupCallContext{
+        
+    }
+    
     init(window: Window, context: AccountContext, launchSettings: LaunchSettings, callSession: PCallSession?, groupCallContext: GroupCallContext?, folders: ChatListFolders?) {
         
         self.context = context

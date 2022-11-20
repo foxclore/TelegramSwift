@@ -12,7 +12,7 @@ import TelegramCore
 import ObjcUtils
 import Postbox
 import SwiftSignalKit
-import TgVoipWebrtc
+//import TgVoipWebrtc
 import TelegramVoip
 import ColorPalette
 

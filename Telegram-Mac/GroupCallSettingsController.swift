@@ -785,7 +785,7 @@ final class GroupCallSettingsController : GenericViewController<GroupCallSetting
                 guard let call = self?.call, let window = self?.window else {
                     return
                 }
-                _ = showModalProgress(signal: call.sharedContext.endGroupCall(terminate: true), for: window).start()
+                //_ = showModalProgress(signal: call.sharedContext.endGroupCall(terminate: true), for: window).start()
             }, appearance: darkPalette.appearance)
 
         }, updateDefaultParticipantsAreMuted: { [weak self] value in

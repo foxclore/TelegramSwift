@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import TgVoipWebrtc
+//import TgVoipWebrtc
 import TGUIKit
 import SwiftSignalKit
 
-final class DesktopCapturePreviewItem : GeneralRowItem {
-    fileprivate let scope: DesktopCaptureSourceScopeMac
+/*final class DesktopCapturePreviewItem : GeneralRowItem {
+    //fileprivate let scope: DesktopCaptureSourceScopeMac
     fileprivate let selected: Bool
-    fileprivate let select: (DesktopCaptureSourceMac, DesktopCaptureSourceManagerMac)->Void
+    //fileprivate let select: (DesktopCaptureSourceMac, DesktopCaptureSourceManagerMac)->Void
     fileprivate private(set) weak var manager: DesktopCaptureSourceManagerMac?
     fileprivate let isAvailable: Bool
     init(_ initialSize: NSSize, stableId: AnyHashable, source: DesktopCaptureSourceMac, isAvailable: Bool, isSelected: Bool, manager: DesktopCaptureSourceManagerMac?, select: @escaping(DesktopCaptureSourceMac, DesktopCaptureSourceManagerMac)->Void) {
@@ -36,13 +36,13 @@ final class DesktopCapturePreviewItem : GeneralRowItem {
     override func viewClass() -> AnyClass {
         return DesktopCapturePreviewView.self
     }
-}
+}*/
 
 
-class DesktopCameraCapturerRowItem: GeneralRowItem {
-    fileprivate let source: CameraCaptureDevice
+/*class DesktopCameraCapturerRowItem: GeneralRowItem {
+    //fileprivate let source: CameraCaptureDevice
     fileprivate let selected: Bool
-    fileprivate let select:(CameraCaptureDevice)->Void
+    //fileprivate let select:(CameraCaptureDevice)->Void
     fileprivate let isAvailable: Bool
     init(_ initialSize: NSSize, stableId: AnyHashable, device: CameraCaptureDevice, isAvailable: Bool, isSelected: Bool, select:@escaping(CameraCaptureDevice)->Void) {
         self.source = device
@@ -65,7 +65,7 @@ class DesktopCameraCapturerRowItem: GeneralRowItem {
     override func viewClass() -> AnyClass {
         return DesktopCapturePreviewView.self
     }
-}
+}*/
 
 
  
@@ -149,8 +149,8 @@ private final class DesktopCaptureSourceMacView : Control {
         return rect
     }
     
-    private var source: VideoSourceMac?
-    func update(view: NSView, source: VideoSourceMac, selected: Bool, animated: Bool, callback:@escaping()->Void) {
+    //private var source: VideoSourceMac?
+    /*func update(view: NSView, source: VideoSourceMac, selected: Bool, animated: Bool, callback:@escaping()->Void) {
         self.callback = callback
         self.source = source
         view.frame = bounds
@@ -200,7 +200,7 @@ private final class DesktopCaptureSourceMacView : Control {
             }
         }
         return nil
-    }
+    }*/
     
     deinit {
         if let layer = self.view?.layer as? AVCaptureVideoPreviewLayer {
@@ -256,8 +256,8 @@ final class DesktopCapturePreviewView : HorizontalRowView {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSView.frameDidChangeNotification, object: enclosingScrollView)
     }
     @objc private func update() {
-        if let item = item as? DesktopCapturePreviewItem {
-            if let manager = item.manager {
+        /*if let item = item as? DesktopCapturePreviewItem {
+            /*if let manager = item.manager {
                 if visibleRect != .zero, item.isAvailable, window != nil {
                     disposable.set(delaySignal(0.03).start(completed: { [weak manager, weak item] in
                         if let item = item {
@@ -268,11 +268,11 @@ final class DesktopCapturePreviewView : HorizontalRowView {
                     disposable.set(nil)
                     manager.stop(item.scope)
                 }
-            }
+            }*/
         }
-        if let item = item as? DesktopCameraCapturerRowItem {
+        /*if let item = item as? DesktopCameraCapturerRowItem {
             if item.isAvailable {
-                if let session = (contentView.viewFor(item.source)?.layer as? AVCaptureVideoPreviewLayer)?.session {
+                /*if let session = (contentView.viewFor(item.source)?.layer as? AVCaptureVideoPreviewLayer)?.session {
                     if visibleRect != .zero {
                         disposable.set(delaySignal(0.07).start(completed: { [weak session] in
                             DispatchQueue.global().async { [weak session] in
@@ -285,10 +285,10 @@ final class DesktopCapturePreviewView : HorizontalRowView {
                             session?.stopRunning()
                         }
                     }
-                }
+                }*/
             }
-        }
-        
+        }*/
+     */
     }
     
     override var backdorColor: NSColor {
@@ -309,17 +309,17 @@ final class DesktopCapturePreviewView : HorizontalRowView {
     
     override func set(item: TableRowItem, animated: Bool = false) {
                 
-        let previous = self.item as? DesktopCapturePreviewItem
+        //let previous = self.item as? DesktopCapturePreviewItem
         
         super.set(item: item, animated: animated)
         
-        if let previous = previous {
-            if let manager = previous.manager {
+        //if let previous = previous {
+            /*if let manager = previous.manager {
                 manager.stop(previous.scope)
-            }
-        }
+            }*/
+        //}
         
-        if let item = item as? DesktopCapturePreviewItem {
+        /*if let item = item as? DesktopCapturePreviewItem {
             if let manager = item.manager {
                 let view: NSView
                 if item.isAvailable {
@@ -333,9 +333,9 @@ final class DesktopCapturePreviewView : HorizontalRowView {
                     }
                 })
             }
-        }
+        }*/
         
-        if let item = item as? DesktopCameraCapturerRowItem {
+       /* if let item = item as? DesktopCameraCapturerRowItem {
             if item.isAvailable {
 
             }
@@ -367,7 +367,7 @@ final class DesktopCapturePreviewView : HorizontalRowView {
                     item.select(item.source)
                 }
             })
-        }
+        }*/
         
         
         update()
@@ -375,3 +375,4 @@ final class DesktopCapturePreviewView : HorizontalRowView {
     }
     
 }
+

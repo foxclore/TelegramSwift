@@ -12,7 +12,7 @@ import TelegramCore
 import SwiftSignalKit
 import InAppSettings
 import Postbox
-import TgVoipWebrtc
+//import TgVoipWebrtc
 
 final class CallSettingsArguments {
     let sharedContext: SharedAccountContext

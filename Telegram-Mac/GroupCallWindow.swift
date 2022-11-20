@@ -255,8 +255,8 @@ final class GroupCallWindow : Window {
 }
 
 
-final class GroupCallContext {
-    private let controller: GroupCallUIController
+/*final class GroupCallContext {
+    //private let controller: GroupCallUIController
     private let navigation: MajorNavigationController
 
     let window: GroupCallWindow
@@ -270,9 +270,9 @@ final class GroupCallContext {
         self.call = call
         self.peerMemberContextsManager = peerMemberContextsManager
         self.window = GroupCallWindow(isStream: call.isStream)
-        self.controller = GroupCallUIController(.init(call: call, peerMemberContextsManager: peerMemberContextsManager), size: window.frame.size)
-        self.navigation = MajorNavigationController(GroupCallUIController.self, controller, self.window)
-        self.navigation._frameRect = NSMakeRect(0, 0, window.frame.width, window.frame.height)
+        //self.controller = GroupCallUIController(.init(call: call, peerMemberContextsManager: peerMemberContextsManager), size: window.frame.size)
+        //self.navigation = MajorNavigationController(GroupCallUIController.self, controller, self.window)
+        /*self.navigation._frameRect = NSMakeRect(0, 0, window.frame.width, window.frame.height)
         self.navigation.alwaysAnimate = true
         self.navigation.cleanupAfterDeinit = true
         self.navigation.viewWillAppear(false)
@@ -288,7 +288,7 @@ final class GroupCallContext {
         self.window.closeInterceptor = { [weak self] in
             self?.readyClose()
             return true
-        }
+        }*/
     }
     
     deinit {
@@ -298,12 +298,12 @@ final class GroupCallContext {
     
     func present() {
 
-        presentDisposable.set((self.controller.ready.get() |> take(1)).start(completed: { [weak self] in
+        /*presentDisposable.set((self.controller.ready.get() |> take(1)).start(completed: { [weak self] in
             guard let `self` = self else {
                 return
             }
             self._readyPresent()
-        }))
+        }))*/
     }
     
     private func readyClose(last: Bool = false) {
@@ -352,7 +352,7 @@ final class GroupCallContext {
         _ = call.sharedContext.endGroupCall(terminate: false).start()
     }
     func leaveSignal() -> Signal<Bool, NoError> {
-        self.controller.disableSounds = true
+        //self.controller.disableSounds = true
         return call.sharedContext.endGroupCall(terminate: false)
     }
     
@@ -363,11 +363,11 @@ final class GroupCallContext {
         self.window.orderFrontRegardless()
     }
     
-}
+}*/
 
 
-func applyGroupCallResult(_ sharedContext: SharedAccountContext, _ result:GroupCallContext) {
+/*func applyGroupCallResult(_ sharedContext: SharedAccountContext, _ result:GroupCallContext) {
     assertOnMainThread()
     result.call.sharedContext.showGroupCall(with: result)
     result.present()
-}
+}*/

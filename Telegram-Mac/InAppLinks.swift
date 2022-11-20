@@ -952,10 +952,11 @@ func execute(inapp:inAppLink, afterComplete: @escaping(Bool)->Void = { _ in }) {
         afterComplete(true)
     case let .joinGroupCall(_, context, peerId, callId):
         selectGroupCallJoiner(context: context, peerId: peerId, completion: { peerId, schedule, isStream in
-            _ = showModalProgress(signal: requestOrJoinGroupCall(context: context, peerId: peerId, joinAs: context.peerId, initialCall: callId), for: context.window).start(next: { result in
+            _ = showModalProgress(signal: requestOrJoinGroupCall(context: context, peerId: peerId, joinAs: context.peerId, initialCall: callId)!, for: context.window).start(next: { result in
                 switch result {
-                case let .success(callContext), let .samePeer(callContext):
+                /*case let .success(callContext), let .samePeer(callContext):
                     applyGroupCallResult(context.sharedContext, callContext)
+                */
                 default:
                     alert(for: context.window, info: strings().errorAnError)
                 }

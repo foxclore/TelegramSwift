@@ -554,10 +554,15 @@ class SharedAccountContext {
         return crossCallSession.with { $0 }
     }
     
-    private let crossGroupCall: Atomic<GroupCallContext?> = Atomic<GroupCallContext?>(value: nil)
+    //private let crossGroupCall: Atomic<GroupCallContext?> = Atomic<GroupCallContext?>(value: nil)
+    
+    class GroupCallContext{
+        
+    }
     
     func getCrossAccountGroupCall() -> GroupCallContext? {
-        return crossGroupCall.with { $0 }
+        //return crossGroupCall.with { $0 }
+        return nil
     }
     #endif
     
@@ -647,20 +652,21 @@ class SharedAccountContext {
     #if !SHARE
     
     var hasActiveCall:Bool {
-        return crossCallSession.with( { $0 }) != nil || crossGroupCall.with( { $0 }) != nil
+        return false
+        //return crossCallSession.with( { $0 }) != nil || crossGroupCall.with( { $0 }) != nil
     }
 
     func dropCrossCall() {
-        _ = crossGroupCall.swap(nil)
-        _ = crossCallSession.swap(nil)
+        //_ = crossGroupCall.swap(nil)
+        //_ = crossCallSession.swap(nil)
     }
     
     func endCurrentCall() -> Signal<Bool, NoError> {
-        if let groupCall = crossGroupCall.with({ $0 }) {
+        /*if let groupCall = crossGroupCall.with({ $0 }) {
             return groupCall.leaveSignal() |> filter { $0 }
         } else if let callSession = crossCallSession.swap(nil) {
             return callSession.hangUpCurrentCall() |> filter { $0 }
-        }
+        }*/
         return .single(true)
     }
     
@@ -671,7 +677,7 @@ class SharedAccountContext {
         }
         _ = crossCallSession.swap(session)
     }
-    private let groupCallContextValue:Promise<GroupCallContext?> = Promise(nil)
+    /*private let groupCallContextValue:Promise<GroupCallContext?> = Promise(nil)
     var groupCallContext:Signal<GroupCallContext?, NoError> {
         return groupCallContextValue.get()
     }
@@ -693,7 +699,7 @@ class SharedAccountContext {
         } else {
             return .single(true)
         }
-    }
+    }*/
     
     #endif
     deinit {

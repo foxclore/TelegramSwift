@@ -131,9 +131,9 @@ struct PresentationGroupCallSummaryState: Equatable {
 
 
 enum RequestOrJoinGroupCallResult {
-    case success(GroupCallContext)
+    //case success(GroupCallContext)
     case fail
-    case samePeer(GroupCallContext)
+    //case samePeer(GroupCallContext)
 }
 
 public enum PresentationGroupCallMuteAction: Equatable {

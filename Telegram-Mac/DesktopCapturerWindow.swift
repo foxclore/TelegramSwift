@@ -8,7 +8,7 @@
 
 import Foundation
 import TGUIKit
-import TgVoipWebrtc
+//import TgVoipWebrtc
 import SwiftSignalKit
 
 
@@ -186,7 +186,7 @@ private final class DesktopCapturerView : View {
 
     }
     
-    private var previousDesktop: (DesktopCaptureSourceScopeMac, DesktopCaptureSourceManagerMac)?
+    /*private var previousDesktop: (DesktopCaptureSourceScopeMac, DesktopCaptureSourceManagerMac)?
     
     func updatePreview(_ source: DesktopCaptureSourceMac, isAvailable: Bool, manager: DesktopCaptureSourceManagerMac, animated: Bool) {
         if let previous = previousDesktop {
@@ -207,7 +207,7 @@ private final class DesktopCapturerView : View {
         }
 
         share.isEnabled = isAvailable
-    }
+    }*/
     
     private func swapView(_ view: NSView, animated: Bool) {
         let previewView = previewContainer
@@ -229,7 +229,7 @@ private final class DesktopCapturerView : View {
 
     }
     
-    func updatePreview(_ source: CameraCaptureDevice, isAvailable: Bool, animated: Bool) {
+    /*func updatePreview(_ source: CameraCaptureDevice, isAvailable: Bool, animated: Bool) {
         if let previous = previousDesktop {
             previous.1.stop(previous.0)
         }
@@ -260,7 +260,7 @@ private final class DesktopCapturerView : View {
         }
         previousDesktop = nil
         share.isEnabled = isAvailable
-    }
+    }*/
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -295,13 +295,13 @@ private final class DesktopCapturerView : View {
     }
 }
 
-final class DesktopCapturerWindow : Window {
+/*final class DesktopCapturerWindow : Window {
     
     private let listController: DesktopCaptureListUI
     let mode: VideoSourceMacMode
     fileprivate let microIsOff: Bool
-    fileprivate let select: (VideoSourceMac, Bool)->Void
-    init(mode: VideoSourceMacMode, select: @escaping(VideoSourceMac, Bool)->Void, devices: DevicesContext, microIsOff: Bool) {
+    //fileprivate let select: (VideoSourceMac, Bool)->Void
+    /*init(mode: VideoSourceMacMode, select: @escaping(VideoSourceMac, Bool)->Void, devices: DevicesContext, microIsOff: Bool) {
         self.mode = mode
         self.select = select
         self.microIsOff = microIsOff
@@ -329,9 +329,9 @@ final class DesktopCapturerWindow : Window {
         
         
         initSaver()
-    }
+    }*/
     
-    func initGuts() {
+    /*func initGuts() {
         
         self.contentView = DesktopCapturerView(frame: .init(origin: .zero, size: self.frame.size))
 
@@ -369,7 +369,7 @@ final class DesktopCapturerWindow : Window {
             }
         }, for: .Click)
 
-    }
+    }*/
     
     private var genericView:DesktopCapturerView {
         return self.contentView as! DesktopCapturerView
@@ -391,7 +391,7 @@ final class DesktopCapturerWindow : Window {
         var bp:Int = 0
         bp += 1
     }
-}
+}*/
 
 enum VideoSourceMacMode {
     case video
@@ -406,7 +406,7 @@ enum VideoSourceMacMode {
         }
     }
 }
-extension VideoSourceMac {
+/*extension VideoSourceMac {
     
     var mode: VideoSourceMacMode {
         if self is DesktopCaptureSourceMac {
@@ -421,9 +421,9 @@ extension VideoSourceMac {
             return .video
         }
     }
-}
+}*/
 
-func presentDesktopCapturerWindow(mode: VideoSourceMacMode, select: @escaping(VideoSourceMac, Bool)->Void, devices: DevicesContext, microIsOff: Bool) -> DesktopCapturerWindow? {
+/*func presentDesktopCapturerWindow(mode: VideoSourceMacMode, select: @escaping(VideoSourceMac, Bool)->Void, devices: DevicesContext, microIsOff: Bool) -> DesktopCapturerWindow? {
     
     switch mode {
     case .video:
@@ -440,4 +440,4 @@ func presentDesktopCapturerWindow(mode: VideoSourceMacMode, select: @escaping(Vi
     window.makeKeyAndOrderFront(nil)
     
     return window
-}
+}*/

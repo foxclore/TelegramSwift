@@ -20,7 +20,7 @@ private func generateStatus(alpha: CGFloat) -> NSImage {
     return NSImage(cgImage: image!, size: image!.systemSize)
 }
 
-final class GroupCallStatusBar {
+/*final class GroupCallStatusBar {
     private let disposable = MetaDisposable()
     private let sharedContext: SharedAccountContext
     
@@ -112,3 +112,4 @@ final class GroupCallStatusBar {
         clear()
     }
 }
+*/

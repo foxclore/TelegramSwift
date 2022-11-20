@@ -109,7 +109,7 @@ final class GroupCallControlsView : View {
     private var rightButton1: CallControl?
     private let end: CallControl = CallControl(frame: .zero)
     private var speakText: TextView?
-    var arguments: GroupCallUIArguments?
+    //var arguments: GroupCallUIArguments?
 
     private let backgroundView = VoiceChatActionButtonBackgroundView()
     let fullscreenBackgroundView = NSVisualEffectView(frame: .zero)
@@ -145,7 +145,7 @@ final class GroupCallControlsView : View {
         
 
         end.set(handler: { [weak self] _ in
-            self?.arguments?.leave()
+            //self?.arguments?.leave()
         }, for: .SingleClick)
                 
         speak.set(handler: { [weak self] control in
@@ -156,17 +156,17 @@ final class GroupCallControlsView : View {
                 } else {
                     if let _ = state.state.scheduleTimestamp {
                         if state.state.canManageCall {
-                            self?.arguments?.startVoiceChat()
+              //              self?.arguments?.startVoiceChat()
                         } else {
-                            self?.arguments?.toggleReminder(!state.state.subscribedToScheduled)
+                //            self?.arguments?.toggleReminder(!state.state.subscribedToScheduled)
                         }
                     } else if let muteState = state.state.muteState, !muteState.canUnmute {
                         if !state.state.raisedHand {
-                            self?.arguments?.toggleRaiseHand()
+                  //          self?.arguments?.toggleRaiseHand()
                         }
                         self?.speak.playRaiseHand()
                     } else {
-                        self?.arguments?.toggleSpeaker()
+                    //    self?.arguments?.toggleSpeaker()
                     }
                 }
                 
@@ -385,18 +385,18 @@ final class GroupCallControlsView : View {
         leftToken = leftButton1.set(handler: { [weak self, weak callState] _ in
             if let callState = callState {
                 if callState.isStream {
-                    self?.arguments?.settings()
+                    //self?.arguments?.settings()
                 } else {
-                    switch callState.mode {
+                    /*switch callState.mode {
                     case .video:
                         if !callState.hasVideo {
-                            self?.arguments?.shareSource(.video, false)
+                            //self?.arguments?.shareSource(.video, false)
                         } else {
-                            self?.arguments?.cancelShareVideo()
+                      //      self?.arguments?.cancelShareVideo()
                         }
                     case .voice:
-                        self?.arguments?.settings()
-                    }
+                        //self?.arguments?.settings()
+                     }*/
                 }
             }
         }, for: .SingleClick)
@@ -405,15 +405,15 @@ final class GroupCallControlsView : View {
         leftButton2?.removeAllHandlers()
         leftButton2?.set(handler: { [weak self, weak callState] _ in
             if let callState = callState, callState.hasScreencast {
-                self?.arguments?.cancelShareScreencast()
+                //self?.arguments?.cancelShareScreencast()
             } else {
-                self?.arguments?.shareSource(.screencast, false)
+                //self?.arguments?.shareSource(.screencast, false)
             }
         }, for: .SingleClick)
         
         rightButton1?.removeAllHandlers()
         rightButton1?.set(handler: { [weak self] _ in
-            self?.arguments?.settings()
+            //self?.arguments?.settings()
         }, for: .SingleClick)
 
         var backgroundState: VoiceChatActionButtonBackgroundView.State
@@ -562,7 +562,7 @@ final class GroupCallControlsView : View {
                     presented = true
                     
                     current.set(handler: { [weak self] _ in
-                        self?.arguments?.dismissTooltip(tooltip)
+                        //self?.arguments?.dismissTooltip(tooltip)
                     }, for: .SingleClick)
                 }
                 let toView: NSView?

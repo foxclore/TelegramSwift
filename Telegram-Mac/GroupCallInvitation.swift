@@ -51,8 +51,8 @@ private struct InvitationPeer : Equatable {
 }
 
 
-final class GroupCallAddMembersBehaviour : SelectPeersBehavior {
-    fileprivate let data: GroupCallUIController.UIData
+/*final class GroupCallAddMembersBehaviour : SelectPeersBehavior {
+    //fileprivate let data: GroupCallUIController.UIData
     private let disposable = MetaDisposable()
     private let window: Window
     init(data: GroupCallUIController.UIData, window: Window) {
@@ -270,8 +270,9 @@ final class GroupCallAddMembersBehaviour : SelectPeersBehavior {
         bp += 1
     }
 }
-
-final class GroupCallInviteMembersBehaviour : SelectPeersBehavior {
+*/
+ 
+/*final class GroupCallInviteMembersBehaviour : SelectPeersBehavior {
     fileprivate let data: GroupCallUIController.UIData
     private let disposable = MetaDisposable()
     private let window: Window
@@ -443,9 +444,9 @@ final class GroupCallInviteMembersBehaviour : SelectPeersBehavior {
             }
         }
     }
-}
+}*/
 
-func GroupCallAddmembers(_ data: GroupCallUIController.UIData, window: Window) -> Signal<[PeerId], NoError> {
+/*func GroupCallAddmembers(_ data: GroupCallUIController.UIData, window: Window) -> Signal<[PeerId], NoError> {
     
     let behaviour: SelectPeersBehavior
     let title: String
@@ -593,3 +594,4 @@ func GroupCallAddmembers(_ data: GroupCallUIController.UIData, window: Window) -
     })
     
 }
+*/

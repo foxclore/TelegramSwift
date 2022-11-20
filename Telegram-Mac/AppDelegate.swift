@@ -809,7 +809,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
                                 if let account = account {
                                                                     
                                     let context = AccountContext(sharedContext: sharedApplicationContext.sharedContext, window: window, account: account)
-                                    return AuthorizedApplicationContext(window: window, context: context, launchSettings: settings ?? LaunchSettings.defaultSettings, callSession: sharedContext.getCrossAccountCallSession(), groupCallContext: sharedContext.getCrossAccountGroupCall(), folders: folders)
+                                    return AuthorizedApplicationContext(window: window, context: context, launchSettings: settings ?? LaunchSettings.defaultSettings, callSession: sharedContext.getCrossAccountCallSession(), groupCallContext: nil, folders: folders)
                                     
                                 } else {
                                     return nil
@@ -1188,7 +1188,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
     }
     
     private func hangKeybind(_ sharedContext: SharedAccountContext) {
-        let signal = combineLatest(queue: .mainQueue(), voiceCallSettings(sharedContext.accountManager), sharedContext.groupCallContext)
+        /*let signal = combineLatest(queue: .mainQueue(), voiceCallSettings(sharedContext.accountManager), nil)
         
         _ = signal.start(next: { settings, activeCall in
             if let pushToTalk = settings.pushToTalk, let _ = activeCall {
@@ -1208,7 +1208,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
             
         })
 
-        
+        */
         
     }
     

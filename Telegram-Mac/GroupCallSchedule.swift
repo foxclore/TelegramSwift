@@ -144,7 +144,7 @@ final class GroupCallScheduleView : View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ state: GroupCallUIState, arguments: GroupCallUIArguments?, animated: Bool) {
+    /*func update(_ state: GroupCallUIState, arguments: GroupCallUIArguments?, animated: Bool) {
         if let scheduleTimestamp = state.state.scheduleTimestamp {
             let current: GroupCallScheduleTimerView
             if let timerView = timerView {
@@ -172,7 +172,7 @@ final class GroupCallScheduleView : View {
             self.timerView?.update(time: scheduleTimestamp, animated: animated)
             self.currentView = current
         }
-    }
+    }*/
     
     func updateLayout(size: NSSize, transition: ContainedViewLayoutTransition) {
         if let view = currentView {

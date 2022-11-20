@@ -12,7 +12,7 @@ import SwiftSignalKit
 import TelegramCore
 import Postbox
 import ColorPalette
-import TgVoipWebrtc
+//import TgVoipWebrtc
 
 private final class PinView : Control {
     private let imageView:ImageView = ImageView()
@@ -256,7 +256,7 @@ final class GroupCallMainVideoContainerView: Control {
     private let speakingView: View = View()
     private let audioLevelDisposable = MetaDisposable()
     
-    private var arguments: GroupCallUIArguments?
+    //private var arguments: GroupCallUIArguments?
     
     private var backView: BackView?
     private var pinView: PinView?
@@ -300,15 +300,15 @@ final class GroupCallMainVideoContainerView: Control {
         
         self.set(handler: { [weak self] _ in
             if let dominant = self?.currentPeer, self?.isPinned == false {
-                self?.arguments?.focusVideo(dominant.endpointId)
+                //self?.arguments?.focusVideo(dominant.endpointId)
             }
         }, for: .SingleClick)
         
         self.set(handler: { [weak self] control in
             if let data = self?.participant {
-                if let menuItems = self?.arguments?.contextMenuItems(data), let event = NSApp.currentEvent {
+                /*if let menuItems = self?.arguments?.contextMenuItems(data), let event = NSApp.currentEvent {
                     ContextMenu.show(items: menuItems, view: control, event: event, presentation: .current(darkPalette), isLegacy: false)
-                }
+                }*/
             }
         }, for: .RightDown)
                 
@@ -345,21 +345,21 @@ final class GroupCallMainVideoContainerView: Control {
         fatalError("init(frame:) has not been implemented")
     }
     
-    func updateMode(controlsMode: GroupCallView.ControlsMode, controlsState: GroupCallControlsView.Mode, animated: Bool) {
+    /*func updateMode(controlsMode: GroupCallView.ControlsMode, controlsState: GroupCallControlsView.Mode, animated: Bool) {
         shadowView.change(opacity: controlsMode == .normal ? 1 : 0, animated: animated)
         
         nameView.change(opacity: controlsMode == .normal ? 1 : 0, animated: animated)
         statusView.change(opacity: controlsMode == .normal ? 1 : 0, animated: animated)
         self.pinView?.change(opacity: self.mouseInside() && self.pinIsVisible ? 1 : 0, animated: animated)
         self.backView?.change(opacity: self.mouseInside() && self.pinIsVisible ? 1 : 0, animated: animated)
-    }
+    }*/
     
     private var participant: PeerGroupCallData?
     
     private var isPinned: Bool = false
     private var isFocused: Bool = false
     private var isAlone: Bool = false
-    func updatePeer(peer: DominantVideo?, participant: PeerGroupCallData?, resizeMode: CALayerContentsGravity, transition: ContainedViewLayoutTransition, animated: Bool, controlsMode: GroupCallView.ControlsMode, isPinned: Bool, isFocused: Bool, isAlone: Bool, arguments: GroupCallUIArguments?) {
+    /*func updatePeer(peer: DominantVideo?, participant: PeerGroupCallData?, resizeMode: CALayerContentsGravity, transition: ContainedViewLayoutTransition, animated: Bool, controlsMode: GroupCallView.ControlsMode, isPinned: Bool, isFocused: Bool, isAlone: Bool, arguments: GroupCallUIArguments?) {
         
        
         self.isFocused = isFocused
@@ -487,11 +487,11 @@ final class GroupCallMainVideoContainerView: Control {
             
             var selfPresentation = peer.peerId == arguments?.getAccountPeerId() && peer.mode == .screencast
             
-            if let source = arguments?.getSource(.screencast) {
+            /*if let source = arguments?.getSource(.screencast) {
                 if source.deviceIdKey().hasPrefix("desktop_capturer_window") {
                     selfPresentation = false
                 }
-            }
+            }*/
             
             if selfPresentation {
                 
@@ -605,7 +605,7 @@ final class GroupCallMainVideoContainerView: Control {
         self.participant = participant
 
         self.updateLayout(size: self.frame.size, transition: transition)
-    }
+    }*/
     
     func updateLayout(size: CGSize, transition: ContainedViewLayoutTransition) {
         

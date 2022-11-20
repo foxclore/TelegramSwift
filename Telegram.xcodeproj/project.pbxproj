@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -340,7 +340,6 @@
 		279E8ECE27425CBD000E1BD5 /* InAppVideoServices in Frameworks */ = {isa = PBXBuildFile; productRef = 279E8ECD27425CBD000E1BD5 /* InAppVideoServices */; };
 		279FD2A0273C1234004F08A1 /* BuildConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 279FD29F273C1234004F08A1 /* BuildConfig */; };
 		279FD2A7273C1251004F08A1 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 279FD2A6273C1251004F08A1 /* Zip */; };
-		279FD2AD273C1291004F08A1 /* TgVoipWebrtc in Frameworks */ = {isa = PBXBuildFile; productRef = 279FD2AC273C1291004F08A1 /* TgVoipWebrtc */; };
 		27A08A2027E4BD7300284048 /* ChannelBotAdminController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A08A1F27E4BD7300284048 /* ChannelBotAdminController.swift */; };
 		27A08A2227E8B73D00284048 /* change_sim.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27A08A2127E8B73D00284048 /* change_sim.tgs */; };
 		27A69759273D084E00B33415 /* GroupCallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E7BD19256A7D350068644D /* GroupCallWindow.swift */; };
@@ -513,7 +512,6 @@
 		27D9130728323A74007CF40F /* RangeSet in Frameworks */ = {isa = PBXBuildFile; productRef = 27D9130628323A74007CF40F /* RangeSet */; };
 		27D9130E2833BE60007CF40F /* PremiumAboutRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9130D2833BE60007CF40F /* PremiumAboutRowItem.swift */; };
 		27D9131028353E53007CF40F /* InAppPurchaseManager in Frameworks */ = {isa = PBXBuildFile; productRef = 27D9130F28353E53007CF40F /* InAppPurchaseManager */; };
-		27D9131128353E58007CF40F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D913092833A1C9007CF40F /* StoreKit.framework */; platformFilter = maccatalyst; };
 		27D91314283646CA007CF40F /* text_to_voice.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27D91312283646CA007CF40F /* text_to_voice.tgs */; };
 		27D91315283646CA007CF40F /* voice_to_text.tgs in Resources */ = {isa = PBXBuildFile; fileRef = 27D91313283646CA007CF40F /* voice_to_text.tgs */; };
 		27D9131728364F1F007CF40F /* VoiceTranscriptionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9131628364F1F007CF40F /* VoiceTranscriptionControl.swift */; };
@@ -1832,7 +1830,6 @@
 		27D696EE274F8108008A723E /* KeyboardKey */ = {isa = PBXFileReference; lastKnownFileType = folder; name = KeyboardKey; path = packages/KeyboardKey; sourceTree = "<group>"; };
 		27D912FB28323A50007CF40F /* RangeSet */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RangeSet; path = "submodules/telegram-ios/submodules/Utils/RangeSet"; sourceTree = "<group>"; };
 		27D913082833A1B0007CF40F /* InAppPurchaseManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = InAppPurchaseManager; path = packages/InAppPurchaseManager; sourceTree = "<group>"; };
-		27D913092833A1C9007CF40F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		27D9130D2833BE60007CF40F /* PremiumAboutRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumAboutRowItem.swift; sourceTree = "<group>"; };
 		27D91312283646CA007CF40F /* text_to_voice.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text_to_voice.tgs; sourceTree = "<group>"; };
 		27D91313283646CA007CF40F /* voice_to_text.tgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voice_to_text.tgs; sourceTree = "<group>"; };
@@ -2730,7 +2727,6 @@
 				D06E38AC24A5F3B700C7D03A /* MetalKit.framework in Frameworks */,
 				27A69790273D1DE900B33415 /* FFMpegBinding in Frameworks */,
 				D06E38AD24A5F3B700C7D03A /* Metal.framework in Frameworks */,
-				279FD2AD273C1291004F08A1 /* TgVoipWebrtc in Frameworks */,
 				A71DC82B23858312000EEDE2 /* CoreSpotlight.framework in Frameworks */,
 				2738A2D4289C41CE00EC1010 /* CurrencyFormat in Frameworks */,
 				A7ED5DAF236C7CE100040372 /* RLottie.framework in Frameworks */,
@@ -2796,7 +2792,6 @@
 				2796FF0D274249B000DA653C /* RingBuffer in Frameworks */,
 				C250B0331DB788B3004E9FBE /* Foundation.framework in Frameworks */,
 				27D43DB42791779C006968A6 /* libmac_framework_objc_static.a in Frameworks */,
-				27D9131128353E58007CF40F /* StoreKit.framework in Frameworks */,
 				2796FEF827423F5300DA653C /* TGPassportMRZ in Frameworks */,
 				27D43DAC27917726006968A6 /* libwebpmux.a in Frameworks */,
 				278B89A62791939700ECF71C /* libwebp in Frameworks */,
@@ -5540,7 +5535,6 @@
 		D098C7311D7E18CB007784E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27D913092833A1C9007CF40F /* StoreKit.framework */,
 				27034075282CF79E00D0156C /* SceneKit.framework */,
 				2748D44427C61DCF0057CF99 /* libtgvoip.framework */,
 				27D43DB327917798006968A6 /* libmac_framework_objc_static.a */,
@@ -5760,7 +5754,6 @@
 				2700B221273ADC94003E4018 /* HotKey */,
 				279FD29F273C1234004F08A1 /* BuildConfig */,
 				279FD2A6273C1251004F08A1 /* Zip */,
-				279FD2AC273C1291004F08A1 /* TgVoipWebrtc */,
 				27A6978C273D192800B33415 /* libphonenumber */,
 				27A6978F273D1DE900B33415 /* FFMpegBinding */,
 				27A69792273D210400B33415 /* OpusBinding */,
@@ -5837,7 +5830,6 @@
 					D098C7141D7E175A007784E4 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -5859,7 +5851,7 @@
 				};
 			};
 			buildConfigurationList = D098C7101D7E175A007784E4 /* Build configuration list for PBXProject "Telegram" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -7323,11 +7315,11 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_ENTITLEMENTS = TelegramShare/TelegramShare.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 209499;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6N38VWS5BX;
+				DEVELOPMENT_TEAM = LUPVH24C3Z;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7465,14 +7457,14 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "Telegram-Mac/Telegram-Mac.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 220805;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6N38VWS5BX;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7709,10 +7701,6 @@
 		279FD2A6273C1251004F08A1 /* Zip */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Zip;
-		};
-		279FD2AC273C1291004F08A1 /* TgVoipWebrtc */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TgVoipWebrtc;
 		};
 		27A6978C273D192800B33415 /* libphonenumber */ = {
 			isa = XCSwiftPackageProductDependency;

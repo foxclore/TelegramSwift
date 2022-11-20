@@ -12,7 +12,7 @@ import SwiftSignalKit
 import TelegramCore
 import InAppSettings
 import Postbox
-import TgVoipWebrtc
+//import TgVoipWebrtc
 import TGUIKit
 import TelegramVoip
 
@@ -33,7 +33,7 @@ private func callConnectionDescription(_ connection: CallSessionConnection) -> O
 }
 
 
-private func callConnectionDescriptionsWebrtc(_ connection: CallSessionConnection, idMapping: [Int64: UInt8]) -> [OngoingCallConnectionDescriptionWebrtc] {
+/*private func callConnectionDescriptionsWebrtc(_ connection: CallSessionConnection, idMapping: [Int64: UInt8]) -> [OngoingCallConnectionDescriptionWebrtc] {
     switch connection {
     case let .reflector(reflector):
         guard let id = idMapping[reflector.id] else {
@@ -57,7 +57,7 @@ private func callConnectionDescriptionsWebrtc(_ connection: CallSessionConnectio
         }
         return result
     }
-}
+}*/
 
 
 
@@ -124,11 +124,11 @@ private let setupLogs: Bool = {
             Logger.shared.log("TGVOIP", value)
         }
     })
-    OngoingCallThreadLocalContextWebrtc.setupLoggingFunction({ value in
+    /*OngoingCallThreadLocalContextWebrtc.setupLoggingFunction({ value in
         if let value = value {
             Logger.shared.log("TGVOIP", value)
         }
-    })
+    })*/
     /*OngoingCallThreadLocalContextWebrtcCustom.setupLoggingFunction({ value in
      if let value = value {
      Logger.shared.log("TGVOIP", value)
@@ -177,7 +177,7 @@ public struct OngoingCallContextState: Equatable {
 }
 
 
-private final class OngoingCallThreadLocalContextQueueImpl: NSObject, OngoingCallThreadLocalContextQueue, OngoingCallThreadLocalContextQueueWebrtc /*, OngoingCallThreadLocalContextQueueWebrtcCustom*/ {
+/*private final class OngoingCallThreadLocalContextQueueImpl: NSObject, OngoingCallThreadLocalContextQueue, OngoingCallThreadLocalContextQueueWebrtc /*, OngoingCallThreadLocalContextQueueWebrtcCustom*/ {
     private let queue: Queue
     
     init(queue: Queue) {
@@ -199,7 +199,7 @@ private final class OngoingCallThreadLocalContextQueueImpl: NSObject, OngoingCal
     func isCurrent() -> Bool {
         return self.queue.isCurrent()
     }
-}
+}*/
 
 private func ongoingNetworkTypeForType(_ type: NetworkType) -> OngoingCallNetworkType {
     switch type {
@@ -210,14 +210,14 @@ private func ongoingNetworkTypeForType(_ type: NetworkType) -> OngoingCallNetwor
     }
 }
 
-private func ongoingNetworkTypeForTypeWebrtc(_ type: NetworkType) -> OngoingCallNetworkTypeWebrtc {
+/*private func ongoingNetworkTypeForTypeWebrtc(_ type: NetworkType) -> OngoingCallNetworkTypeWebrtc {
     switch type {
     case .none:
         return .wifi
     case .wifi:
         return .wifi
     }
-}
+}*/
 
 /*private func ongoingNetworkTypeForTypeWebrtcCustom(_ type: NetworkType) -> OngoingCallNetworkTypeWebrtcCustom {
  switch type {
@@ -250,7 +250,7 @@ private func ongoingDataSavingForType(_ type: VoiceCallDataSaving) -> OngoingCal
     }
 }
 
-private func ongoingDataSavingForTypeWebrtc(_ type: VoiceCallDataSaving) -> OngoingCallDataSavingWebrtc {
+/*private func ongoingDataSavingForTypeWebrtc(_ type: VoiceCallDataSaving) -> OngoingCallDataSavingWebrtc {
     switch type {
     case .never:
         return .never
@@ -259,7 +259,7 @@ private func ongoingDataSavingForTypeWebrtc(_ type: VoiceCallDataSaving) -> Ongo
     case .always:
         return .always
     }
-}
+}*/
 
 
 private protocol OngoingCallThreadLocalContextProtocol: AnyObject {
@@ -347,7 +347,7 @@ extension OngoingCallThreadLocalContext: OngoingCallThreadLocalContextProtocol {
     }
 }
 
-extension OngoingCallThreadLocalContextWebrtc: OngoingCallThreadLocalContextProtocol {
+/*extension OngoingCallThreadLocalContextWebrtc: OngoingCallThreadLocalContextProtocol {
     func nativeSetNetworkType(_ type: NetworkType) {
         self.setNetworkType(ongoingNetworkTypeForTypeWebrtc(type))
     }
@@ -396,7 +396,7 @@ extension OngoingCallThreadLocalContextWebrtc: OngoingCallThreadLocalContextProt
     func nativeGetDerivedState() -> Data {
         return self.getDerivedState()
     }
-}
+}*/
 
 
 private extension OngoingCallContextState.State {
@@ -416,7 +416,7 @@ private extension OngoingCallContextState.State {
     }
 }
 
-private extension OngoingCallContextState.State {
+/*private extension OngoingCallContextState.State {
     init(_ state: OngoingCallStateWebrtc) {
         switch state {
         case .initializing:
@@ -431,7 +431,7 @@ private extension OngoingCallContextState.State {
             self = .failed
         }
     }
-}
+}*/
 
 /*private extension OngoingCallContextState {
  init(_ state: OngoingCallStateWebrtcCustom) {
@@ -518,9 +518,9 @@ final class OngoingCallContext {
             return [(OngoingCallThreadLocalContext.version(), true)]
         } else {
             var result: [(version: String, supportsVideo: Bool)] = [(OngoingCallThreadLocalContext.version(), false)]
-            result.append(contentsOf: OngoingCallThreadLocalContextWebrtc.versions(withIncludeReference: includeReference).map { version -> (version: String, supportsVideo: Bool) in
+            /*result.append(contentsOf: OngoingCallThreadLocalContextWebrtc.versions(withIncludeReference: includeReference).map { version -> (version: String, supportsVideo: Bool) in
                 return (version, true)
-            })
+            })*/
             return result
         }
     }
@@ -530,7 +530,7 @@ final class OngoingCallContext {
     init(account: Account, callSessionManager: CallSessionManager, internalId: CallSessionInternalId, proxyServer: ProxyServerSettings?, initialNetworkType: NetworkType, updatedNetworkType: Signal<NetworkType, NoError>, serializedData: String?, dataSaving: VoiceCallDataSaving, derivedState: VoipDerivedState, key: Data, isOutgoing: Bool, video: OngoingCallVideoCapturer?, connections: CallSessionConnectionSet, maxLayer: Int32, version: String, allowP2P: Bool, enableTCP: Bool, enableStunMarking: Bool, logName: String, preferredVideoCodec: String?, inputDeviceId: String?, outputDeviceId: String?) {
         let _ = setupLogs
         OngoingCallThreadLocalContext.applyServerConfig(serializedData)
-        OngoingCallThreadLocalContextWebrtc.applyServerConfig(serializedData)
+        //OngoingCallThreadLocalContextWebrtc.applyServerConfig(serializedData)
         
         self.internalId = internalId
         self.account = account
@@ -561,7 +561,7 @@ final class OngoingCallContext {
                 useModernImplementation = version != OngoingCallThreadLocalContext.version()
             }
             if useModernImplementation {
-                var voipProxyServer: VoipProxyServerWebrtc?
+                /*var voipProxyServer: VoipProxyServerWebrtc?
                 if let proxyServer = proxyServer {
                     switch proxyServer.connection {
                     case let .socks5(username, password):
@@ -569,7 +569,7 @@ final class OngoingCallContext {
                     case .mtp:
                         break
                     }
-                }
+                }*/
                 
                 let unfilteredConnections = [connections.primary] + connections.alternatives
                 
@@ -591,29 +591,29 @@ final class OngoingCallContext {
                 }
                 
                 var processedConnections: [CallSessionConnection] = []
-                var filteredConnections: [OngoingCallConnectionDescriptionWebrtc] = []
+                //var filteredConnections: [OngoingCallConnectionDescriptionWebrtc] = []
                 for connection in unfilteredConnections {
                     if processedConnections.contains(connection) {
                         continue
                     }
                     processedConnections.append(connection)
-                    filteredConnections.append(contentsOf: callConnectionDescriptionsWebrtc(connection, idMapping: reflectorIdMapping))
+                    //filteredConnections.append(contentsOf: callConnectionDescriptionsWebrtc(connection, idMapping: reflectorIdMapping))
                 }
                 
-                for connection in filteredConnections {
+                /*for connection in filteredConnections {
                     if connection.username == "reflector" {
                         let peerTag = dataWithHexString(connection.password)
                         break
                     }
-                }
+                }*/
 
-                let context = OngoingCallThreadLocalContextWebrtc(version: version, queue: OngoingCallThreadLocalContextQueueImpl(queue: queue), proxy: voipProxyServer, networkType: ongoingNetworkTypeForTypeWebrtc(initialNetworkType), dataSaving: ongoingDataSavingForTypeWebrtc(dataSaving), derivedState: derivedState.data, key: key, isOutgoing: isOutgoing, connections: filteredConnections, maxLayer: maxLayer, allowP2P: allowP2P, allowTCP: enableTCP, enableStunMarking: enableStunMarking, logPath: tempLogPath, statsLogPath: tempStatsLogPath, sendSignalingData: { [weak callSessionManager] data in
+                /*let context = OngoingCallThreadLocalContextWebrtc(version: version, queue: OngoingCallThreadLocalContextQueueImpl(queue: queue), proxy: voipProxyServer, networkType: ongoingNetworkTypeForTypeWebrtc(initialNetworkType), dataSaving: ongoingDataSavingForTypeWebrtc(dataSaving), derivedState: derivedState.data, key: key, isOutgoing: isOutgoing, connections: filteredConnections, maxLayer: maxLayer, allowP2P: allowP2P, allowTCP: enableTCP, enableStunMarking: enableStunMarking, logPath: tempLogPath, statsLogPath: tempStatsLogPath, sendSignalingData: { [weak callSessionManager] data in
                     callSessionManager?.sendSignalingData(internalId: internalId, data: data)
-                }, videoCapturer: video?.impl, preferredVideoCodec: preferredVideoCodec, inputDeviceId: inputDeviceId ?? "", outputDeviceId: outputDeviceId ?? "")
+                }, videoCapturer: video?.impl, preferredVideoCodec: preferredVideoCodec, inputDeviceId: inputDeviceId ?? "", outputDeviceId: outputDeviceId ?? "")*/
                 
                 
-                self.contextRef = Unmanaged.passRetained(OngoingCallThreadLocalContextHolder(context))
-                context.stateChanged = { [weak self, weak callSessionManager] state, videoState, remoteVideoState, remoteAudioState, remoteBatteryLevel, remotePreferredAspectRatio in
+                //self.contextRef = Unmanaged.passRetained(OngoingCallThreadLocalContextHolder(context))
+                /*context.stateChanged = { [weak self, weak callSessionManager] state, videoState, remoteVideoState, remoteAudioState, remoteBatteryLevel, remotePreferredAspectRatio in
                     queue.async {
                         guard let strongSelf = self else {
                             return
@@ -667,14 +667,14 @@ final class OngoingCallContext {
                         strongSelf.contextState.set(.single(OngoingCallContextState(state: mappedState, videoState: mappedVideoState, remoteVideoState: mappedRemoteVideoState, remoteAudioState: mappedRemoteAudioState, remoteBatteryLevel: mappedRemoteBatteryLevel, remoteAspectRatio: remotePreferredAspectRatio)))
 
                     }
-                }
+                }*/
                 self.receptionPromise.set(.single(4))
-                context.signalBarsChanged = { [weak self] signalBars in
+                /*context.signalBarsChanged = { [weak self] signalBars in
                     self?.receptionPromise.set(.single(signalBars))
                 }
                 context.audioLevelUpdated = { [weak self] level in
                     self?.audioLevelPromise.set(.single(level))
-                }
+                }*/
 
                 
                 self.networkTypeDisposable = (updatedNetworkType
@@ -693,10 +693,10 @@ final class OngoingCallContext {
                         break
                     }
                 }
-                let context = OngoingCallThreadLocalContext(queue: OngoingCallThreadLocalContextQueueImpl(queue: queue), proxy: voipProxyServer, networkType: ongoingNetworkTypeForType(initialNetworkType), dataSaving: ongoingDataSavingForType(dataSaving), derivedState: derivedState.data, key: key, isOutgoing: isOutgoing, primaryConnection: callConnectionDescription(connections.primary)!, alternativeConnections: connections.alternatives.compactMap(callConnectionDescription), maxLayer: maxLayer, allowP2P: allowP2P, logPath: logPath)
+                /*let context = OngoingCallThreadLocalContext(queue: OngoingCallThreadLocalContextQueueImpl(queue: queue), proxy: voipProxyServer, networkType: ongoingNetworkTypeForType(initialNetworkType), dataSaving: ongoingDataSavingForType(dataSaving), derivedState: derivedState.data, key: key, isOutgoing: isOutgoing, primaryConnection: callConnectionDescription(connections.primary)!, alternativeConnections: connections.alternatives.compactMap(callConnectionDescription), maxLayer: maxLayer, allowP2P: allowP2P, logPath: logPath)*/
                 
                 
-                self.contextRef = Unmanaged.passRetained(OngoingCallThreadLocalContextHolder(context))
+                /*self.contextRef = Unmanaged.passRetained(OngoingCallThreadLocalContextHolder(context))
                 context.stateChanged = { [weak self] state in
                     self?.contextState.set(.single(OngoingCallContextState(state: OngoingCallContextState.State(state), videoState: .notAvailable, remoteVideoState: .inactive, remoteAudioState: .active, remoteBatteryLevel: .normal, remoteAspectRatio: 0)))
                 }
@@ -709,7 +709,7 @@ final class OngoingCallContext {
                     self?.withContext { context in
                         context.nativeSetNetworkType(networkType)
                     }
-                })
+                })*/
             }
         }
         
@@ -719,11 +719,11 @@ final class OngoingCallContext {
             print("data received")
             queue.async {
                 self?.withContext { context in
-                    if let context = context as? OngoingCallThreadLocalContextWebrtc {
+                    /*if let context = context as? OngoingCallThreadLocalContextWebrtc {
                         for data in dataList {
                             context.addSignaling(data)
                         }
-                    }
+                    }*/
                 }
             }
         })
@@ -865,7 +865,7 @@ final class OngoingCallContext {
     
     func makeIncomingVideoView(completion: @escaping (OngoingCallContextPresentationCallVideoView?) -> Void) {
         self.withContext { context in
-            if let context = context as? OngoingCallThreadLocalContextWebrtc {
+            /*if let context = context as? OngoingCallThreadLocalContextWebrtc {
                 context.makeIncomingVideoView { view in
                     if let view = view {
                         completion(OngoingCallContextPresentationCallVideoView(
@@ -910,7 +910,7 @@ final class OngoingCallContext {
                 }
             } else {
                 completion(nil)
-            }
+            }*/
         }
     }
 

@@ -11,7 +11,7 @@ import TGUIKit
 import TelegramCore
 import Postbox
 import SwiftSignalKit
-import TgVoipWebrtc
+//import TgVoipWebrtc
 
 struct VoiceChatTile {
     fileprivate(set) var rect: NSRect
@@ -257,7 +257,7 @@ private final class LimitView : View {
 }
 
 
-final class GroupCallTileView: View {
+/*final class GroupCallTileView: View {
     
     private struct TileEntry : Comparable, Identifiable {
         static func < (lhs: TileEntry, rhs: TileEntry) -> Bool {
@@ -289,13 +289,13 @@ final class GroupCallTileView: View {
     private var items:[TileEntry] = []
     private let call: PresentationGroupCall
     private var controlsMode: GroupCallView.ControlsMode = .normal
-    private var arguments: GroupCallUIArguments? = nil
+    //private var arguments: GroupCallUIArguments? = nil
     private var prevState: GroupCallUIState?
     private var pinnedIndex: Int? = nil
     
     private var limitView: LimitView? = nil
     
-    init(call: PresentationGroupCall, arguments: GroupCallUIArguments?, frame: NSRect) {
+    /init(call: PresentationGroupCall, arguments: GroupCallUIArguments?, frame: NSRect) {
         self.call = call
         self.arguments = arguments
         super.init(frame: frame)
@@ -566,4 +566,4 @@ final class GroupCallTileView: View {
     public override var mouseDownCanMoveWindow: Bool {
         return true
     }
-}
+}*/

@@ -15,7 +15,7 @@ import TGUIKit
 import CoreGraphics
 
 import TelegramVoip
-import TgVoipWebrtc
+//import TgVoipWebrtc
 
 enum CallTone {
     case undefined
@@ -167,7 +167,7 @@ public struct CallAuxiliaryServer {
 }
 
 
-private final class OngoingCallThreadLocalContextQueueImpl: NSObject, OngoingCallThreadLocalContextQueue, OngoingCallThreadLocalContextQueueWebrtc  {
+/*private final class OngoingCallThreadLocalContextQueueImpl: NSObject, OngoingCallThreadLocalContextQueue, OngoingCallThreadLocalContextQueueWebrtc  {
     private let queue: Queue
     
     init(queue: Queue) {
@@ -189,7 +189,7 @@ private final class OngoingCallThreadLocalContextQueueImpl: NSObject, OngoingCal
     func isCurrent() -> Bool {
         return self.queue.isCurrent()
     }
-}
+}*/
 
 
 let callQueue = Queue(name: "VoIPQueue")
@@ -967,17 +967,17 @@ class PCallSession {
         }
     }
     
-    private weak var captureSelectWindow: DesktopCapturerWindow?
+    //private weak var captureSelectWindow: DesktopCapturerWindow?
     
     public func toggleScreenCapture() -> ScreenCaptureLaunchError? {
         if !self.isScreenCapture {
-            if let captureSelectWindow = captureSelectWindow {
+            /*if let captureSelectWindow = captureSelectWindow {
                 captureSelectWindow.orderFrontRegardless()
             } else {
                 self.captureSelectWindow = presentDesktopCapturerWindow(mode: .screencast, select: { [weak self] source, value in
                     self?.enableScreenCapture(source.deviceIdKey())
                 }, devices: accountContext.sharedContext.devicesContext, microIsOff: self.isMuted)
-            }
+            }*/
         } else {
             self.disableScreenCapture()
         }
@@ -1228,11 +1228,11 @@ func makeNewCallConfirmation(accountContext: AccountContext, newPeerId: PeerId, 
             currentPeerId = session.peerId
             currentAccount = session.account
             currentCallType = .call
-        } else if let groupCall = accountContext.sharedContext.getCrossAccountGroupCall() {
+        } /*else if let groupCall = accountContext.sharedContext.getCrossAccountGroupCall() {
             currentPeerId = groupCall.call.peerId
             currentAccount = groupCall.call.account
             currentCallType = .voiceChat
-        } else {
+        } */else {
             fatalError("wtf")
         }
         if ignoreSame, newPeerId == currentPeerId {

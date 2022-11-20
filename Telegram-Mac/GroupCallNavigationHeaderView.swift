@@ -24,22 +24,22 @@ class GroupCallNavigationHeaderView: CallHeaderBasicView {
 
     private let audioLevelDisposable = MetaDisposable()
 
-    var context: GroupCallContext? {
+    /*var context: GroupCallContext? {
         get {
             return self.header?.contextObject as? GroupCallContext
         }
-    }
+    }*/
 
     override func toggleMute() {
-        self.context?.call.toggleIsMuted()
+        //self.context?.call.toggleIsMuted()
     }
 
     override func showInfoWindow() {
-        self.context?.present()
+        //self.context?.present()
     }
 
     override func hangUp() {
-        self.context?.leave()
+        //self.context?.leave()
     }
 
     override var blueColor: NSColor {
@@ -55,32 +55,32 @@ class GroupCallNavigationHeaderView: CallHeaderBasicView {
     }
 
     override func update(with contextObject: Any) {
-        super.update(with: contextObject)
+        /*super.update(with: contextObject)
 
 
-        let context = contextObject as! GroupCallContext
-        let peerId = context.call.peerId
+        //let context = contextObject as! GroupCallContext
+        //let peerId = context.call.peerId
 
 
-        let data = context.call.summaryState
-        |> filter { $0 != nil }
+        //let data = context.call.summaryState
+        //|> filter { $0 != nil }
         |> map { $0! }
         |> map { summary -> GroupCallPanelData in
             return GroupCallPanelData(
-                peerId: peerId,
+                //peerId: peerId,
                 info: summary.info,
                 topParticipants: summary.topParticipants,
                 participantCount: summary.participantCount,
-                activeSpeakers: summary.activeSpeakers,
-                groupCall: nil
+                activeSpeakers: summary.activeSpeakers//,
+                //groupCall: nil
             )
-        }
+        }*/
 
-        let account = context.call.account
+        //let account = context.call.account
 
-        let signal = Signal<Peer?, NoError>.single(context.call.peer) |> then(context.call.account.postbox.loadedPeerWithId(context.call.peerId) |> map(Optional.init) |> deliverOnMainQueue)
-
-        let accountPeer: Signal<Peer?, NoError> = context.call.sharedContext.activeAccounts |> mapToSignal { accounts in
+        /*let signal = Signal<Peer?, NoError>.single(context.call.peer) |> then(context.call.account.postbox.loadedPeerWithId(context.call.peerId) |> map(Optional.init) |> deliverOnMainQueue)
+*/
+        /*let accountPeer: Signal<Peer?, NoError> = context.call.sharedContext.activeAccounts |> mapToSignal { accounts in
             if accounts.accounts.count == 1 {
                 return .single(nil)
             } else {
@@ -133,7 +133,7 @@ class GroupCallNavigationHeaderView: CallHeaderBasicView {
                 }
             }
             strongSelf.backgroundView.audioLevel = effectiveLevel
-        }))
+        }))*/
     }
 
     deinit {

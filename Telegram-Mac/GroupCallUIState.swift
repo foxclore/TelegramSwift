@@ -12,7 +12,7 @@ import SwiftSignalKit
 import Postbox
 import InAppSettings
 import TelegramCore
-import TgVoipWebrtc
+//import TgVoipWebrtc
 
 final class GroupCallUIState : Equatable {
 
@@ -59,14 +59,14 @@ final class GroupCallUIState : Equatable {
     
     struct VideoSources : Equatable {
         static func == (lhs: GroupCallUIState.VideoSources, rhs: GroupCallUIState.VideoSources) -> Bool {
-            if let lhsVideo = lhs.video, let rhsVideo = rhs.video {
+            /*if let lhsVideo = lhs.video, let rhsVideo = rhs.video {
                 if !lhsVideo.isEqual(rhsVideo) {
                     return false
                 }
             } else if (lhs.video != nil) != (rhs.video != nil) {
                 return false
-            }
-            if let lhsScreencast = lhs.screencast, let rhsScreencast = rhs.screencast {
+            }*/
+            /*if let lhsScreencast = lhs.screencast, let rhsScreencast = rhs.screencast {
                 if !lhsScreencast.isEqual(rhsScreencast) {
                     return false
                 }
@@ -75,17 +75,18 @@ final class GroupCallUIState : Equatable {
             }
             if lhs.failed != rhs.failed {
                 return false
-            }
+            }*/
             return true
         }
         
-        var video: VideoSourceMac? = nil
-        var screencast: VideoSourceMac? = nil
+        //var video: VideoSourceMac? = nil
+        //var screencast: VideoSourceMac? = nil
         
         var failed: Bool = false
         
         var isEmpty: Bool {
-            return video == nil && screencast == nil
+            return true
+            //return video == nil && screencast == nil
         }
     }
     
@@ -194,10 +195,12 @@ final class GroupCallUIState : Equatable {
     }
     
     var hasVideo: Bool {
-        return videoSources.video != nil
+        return false
+        //return videoSources.video != nil
     }
     var hasScreencast: Bool {
-        return videoSources.screencast != nil
+        return false
+        //return videoSources.screencast != nil
     }
     
     deinit {

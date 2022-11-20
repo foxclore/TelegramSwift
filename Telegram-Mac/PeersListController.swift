@@ -471,7 +471,7 @@ class PeerListContainerView : View {
         self.state = state
         
         var voiceChat: ChatActiveGroupCallInfo?
-        if state.forumPeer?.call?.data?.groupCall == nil {
+        /*if state.forumPeer?.call?.data?.groupCall == nil {
             if let data = state.forumPeer?.call?.data, data.participantCount == 0 && state.forumPeer?.call?.activeCall.scheduleTimestamp == nil {
                 voiceChat = nil
             } else {
@@ -479,7 +479,8 @@ class PeerListContainerView : View {
             }
         } else {
             voiceChat = nil
-        }
+        }*/
+        voiceChat = nil
         
         self.updateAdditionHeader(state, size: frame.size, arguments: arguments, animated: animated)
 
@@ -1385,12 +1386,13 @@ class PeersListController: TelegramGenericViewController<PeerListContainerView>,
         let arguments = Arguments(context: context, joinGroupCall: { info in
             if case let .forum(peerId) = mode {
                 let join:(PeerId, Date?, Bool)->Void = { joinAs, _, _ in
-                    _ = showModalProgress(signal: requestOrJoinGroupCall(context: context, peerId: peerId, joinAs: joinAs, initialCall: info.activeCall, initialInfo: info.data?.info, joinHash: nil), for: context.window).start(next: { result in
+                    _ = showModalProgress(signal: requestOrJoinGroupCall(context: context, peerId: peerId, joinAs: joinAs, initialCall: info.activeCall, initialInfo: info.data?.info, joinHash: nil)!, for: context.window).start(next: { result in
                         switch result {
-                        case let .samePeer(callContext):
+                        /*case let .samePeer(callContext):
                             applyGroupCallResult(context.sharedContext, callContext)
                         case let .success(callContext):
                             applyGroupCallResult(context.sharedContext, callContext)
+                        */
                         default:
                             alert(for: context.window, info: strings().errorAnError)
                         }
@@ -1547,13 +1549,13 @@ class PeersListController: TelegramGenericViewController<PeerListContainerView>,
                     }
                     
                     if let call = self?.state?.forumPeer?.call {
-                        if call.data?.groupCall == nil {
+                        /*if call.data?.groupCall == nil {
                             if let data = call.data, data.participantCount == 0 && call.activeCall.scheduleTimestamp == nil {
                                 items.append(ContextMenuItem(strings().peerInfoActionVoiceChat, handler: { [weak self] in
                                     self?.takeArguments()?.joinGroupCall(call)
                                 }, itemImage: MenuAnimation.menu_video_chat.value))
                             }
-                        }
+                        }*/
                     }
                     
                     if peer.peer.isAdmin && peer.peer.hasPermission(.manageTopics) {

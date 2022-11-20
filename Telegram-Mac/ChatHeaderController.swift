@@ -1925,7 +1925,8 @@ final class ChatGroupCallView : Control, ChatHeaderProtocol {
         
         let context = self.context
         
-        let activeCall = data.data?.groupCall != nil
+        //let activeCall = data.data?.groupCall != nil
+        let activeCall = false
         joinButton.change(opacity: activeCall ? 0 : 1, animated: animated)
         joinButton.userInteractionEnabled = !activeCall
         joinButton.isEventLess = activeCall
@@ -1998,7 +1999,7 @@ final class ChatGroupCallView : Control, ChatHeaderProtocol {
 
 
 
-        if let data = data.data, data.groupCall == nil {
+        /*if let data = data.data, data.groupCall == nil {
 
             var activeSpeakers = data.activeSpeakers
 
@@ -2028,7 +2029,7 @@ final class ChatGroupCallView : Control, ChatHeaderProtocol {
                 self.audioLevelGeneratorTimer = audioLevelGeneratorTimer
                 audioLevelGeneratorTimer.start()
             }
-        }
+        }*/
 
         let subviewsCount = max(avatarsContainer.subviews.filter { $0.layer?.opacity == 1.0 }.count, 1)
 

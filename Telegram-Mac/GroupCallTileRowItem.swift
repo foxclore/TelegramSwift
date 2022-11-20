@@ -13,8 +13,8 @@ import SwiftSignalKit
 import Postbox
 import TelegramCore
 
-final class GroupCallTileRowItem : GeneralRowItem {
-    fileprivate let takeView: ()->(NSSize, GroupCallTileView)?
+/*final class GroupCallTileRowItem : GeneralRowItem {
+    //fileprivate let takeView: ()->(NSSize, GroupCallTileView)?
     init(_ initialSize: NSSize, stableId: AnyHashable, takeView: @escaping()->(NSSize, GroupCallTileView)?) {
         self.takeView = takeView
         super.init(initialSize, stableId: stableId)
@@ -35,7 +35,7 @@ final class GroupCallTileRowItem : GeneralRowItem {
     override func viewClass() -> AnyClass {
         return GroupCallTileRowView.self
     }
-}
+}*/
 
 private final class GroupCallTileRowView: TableRowView {
     required init(frame frameRect: NSRect) {
@@ -53,12 +53,12 @@ private final class GroupCallTileRowView: TableRowView {
     
     override func set(item: TableRowItem, animated: Bool = false) {
         super.set(item: item, animated: animated)
-        guard let item = item as? GroupCallTileRowItem else {
+        /*guard let item = item as? GroupCallTileRowItem else {
             return
-        }
-        if let view = item.takeView() {
+        }*/
+        /*if let view = item.takeView() {
             addSubview(view.1)
-        }
+        }*/
     }
     
     

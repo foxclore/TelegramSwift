@@ -79,7 +79,7 @@ private final class NoStreamView : View {
     }
 }
 
-final class GroupCallView : View {
+/*final class GroupCallView : View {
     
     enum ControlsMode {
         case normal
@@ -103,11 +103,11 @@ final class GroupCallView : View {
     
     private var noStreamView: NoStreamView?
     
-    var arguments: GroupCallUIArguments? {
+    /*var arguments: GroupCallUIArguments? {
         didSet {
             controlsContainer.arguments = arguments
         }
-    }
+    }*/
     
     private final class Content : View {
         
@@ -689,7 +689,7 @@ final class GroupCallView : View {
             if let tileView = self.tileView {
                 current = tileView
             } else {
-                current = GroupCallTileView(call: call, arguments: arguments, frame: videoRect.size.bounds)
+                //current = GroupCallTileView(call: call, arguments: arguments, frame: videoRect.size.bounds)
                 self.tileView = current
                 if animated {
                     current.layer?.animateAlpha(from: 0, to: 1, duration: duration)
@@ -803,3 +803,4 @@ final class GroupCallView : View {
         fatalError("init(coder:) has not been implemented")
     }
 }
+*/

@@ -56,7 +56,8 @@ func allocateCallLogPath(account: Account) -> String {
 func getGroupCallPanelData(context: AccountContext, peerId: PeerId) -> Signal<GroupCallPanelData?, NoError> {
     let account = context.account
     let availableGroupCall: Signal<GroupCallPanelData?, NoError>
-    if peerId.namespace == Namespaces.Peer.CloudChannel || peerId.namespace == Namespaces.Peer.CloudGroup {
+    
+    /*if peerId.namespace == Namespaces.Peer.CloudChannel || peerId.namespace == Namespaces.Peer.CloudGroup {
         availableGroupCall = context.account.viewTracker.peerView(peerId)
                         |> map { peerView -> CachedChannelData.ActiveCall? in
                             if let cachedData = peerView.cachedData as? CachedChannelData {
@@ -68,11 +69,12 @@ func getGroupCallPanelData(context: AccountContext, peerId: PeerId) -> Signal<Gr
                             return nil
                         }
                         |> distinctUntilChanged
-                           |> mapToSignal { activeCall -> Signal<GroupCallPanelData?, NoError> in
+                           |> mapToSignal { activeCall -> Signal<GroupCallPanelData?, NoError>? in
                                guard let activeCall = activeCall else {
                                    return .single(nil)
                                }
-                                return context.sharedContext.groupCallContext |> mapToSignal { groupCall in
+                               return nil
+                                /*return context.sharedContext.groupCallContext |> mapToSignal { groupCall in
                                     if let context = groupCall, context.call.peerId == peerId && context.call.account.id == account.id {
                                         return context.call.summaryState
                                             |> map { summary -> GroupCallPanelData in
@@ -104,12 +106,13 @@ func getGroupCallPanelData(context: AccountContext, peerId: PeerId) -> Signal<Gr
                                             return disposable
                                         }
                                     }
-                                }
+                                }*/
                            }
 
     } else {
-        availableGroupCall = .single(nil)
-    }
+        
+    }*/
+    availableGroupCall = .single(nil)
     return availableGroupCall
 }
 
@@ -215,8 +218,8 @@ final class AccountGroupCallContextImpl: AccountGroupCallContext {
             ),
             topParticipants: [],
             participantCount: 0,
-            activeSpeakers: Set(),
-            groupCall: nil
+            activeSpeakers: Set()//,
+            //groupCall: nil
         )))
         
         self.disposable = (context.engine.calls.getGroupCallParticipants(callId: call.id, accessHash: call.accessHash, offset: "", ssrcs: [], limit: 100, sortAscending: nil)
@@ -255,8 +258,8 @@ final class AccountGroupCallContextImpl: AccountGroupCallContext {
                     info: GroupCallInfo(id: call.id, accessHash: call.accessHash, participantCount: state.totalCount, streamDcId: nil, title: state.title, scheduleTimestamp: state.scheduleTimestamp, subscribedToScheduled: state.subscribedToScheduled, recordingStartTimestamp: state.recordingStartTimestamp, sortAscending: state.sortAscending, defaultParticipantsAreMuted: state.defaultParticipantsAreMuted, isVideoEnabled: state.isVideoEnabled, unmutedVideoLimit: state.unmutedVideoLimit, isStream: state.isStream),
                     topParticipants: topParticipants,
                     participantCount: state.totalCount,
-                    activeSpeakers: activeSpeakers,
-                    groupCall: nil
+                    activeSpeakers: activeSpeakers/*,
+                    groupCall: nil*/
                 )
             })
         })
@@ -2865,13 +2868,14 @@ final class PresentationGroupCallImpl: PresentationGroupCall {
 }
 
 
-func requestOrJoinGroupCall(context: AccountContext, peerId: PeerId, joinAs: PeerId, initialCall: CachedChannelData.ActiveCall?, initialInfo: GroupCallInfo? = nil, joinHash: String? = nil) -> Signal<RequestOrJoinGroupCallResult, NoError> {
+func requestOrJoinGroupCall(context: AccountContext, peerId: PeerId, joinAs: PeerId, initialCall: CachedChannelData.ActiveCall?, initialInfo: GroupCallInfo? = nil, joinHash: String? = nil) -> Signal<RequestOrJoinGroupCallResult, NoError>? {
     let sharedContext = context.sharedContext
     let accounts = context.sharedContext.activeAccounts |> take(1)
     let account = context.account
 
-    return combineLatest(queue: .mainQueue(), accounts, account.postbox.loadedPeerWithId(peerId)) |> mapToSignal { accounts, peer in
-        if let context = context.sharedContext.getCrossAccountGroupCall(), context.call.peerId == peerId, context.call.account.id == account.id {
+    return nil/*combineLatest(queue: .mainQueue(), accounts, account.postbox.loadedPeerWithId(peerId)) |> mapToSignal { accounts, peer in
+            .single(.samePeer(context))
+        /*if let context = context.sharedContext.getCrossAccountGroupCall(), context.call.peerId == peerId, context.call.account.id == account.id {
             return .single(.samePeer(context))
         } else {
             return makeNewCallConfirmation(accountContext: context, newPeerId: peerId, newCallType: .voiceChat)
@@ -2886,17 +2890,23 @@ func requestOrJoinGroupCall(context: AccountContext, peerId: PeerId, joinAs: Pee
                 }
                 return .success(startGroupCall(context: context, peerId: peerId, joinAs: joinAs, initialCall: call, initialInfo: initialInfo, joinHash: joinHash, peer: peer))
             }
-        }
-    }
+        }*/
+    }*/
 
 }
 
+class GroupCallContext{
+    
+}
 
-private func startGroupCall(context: AccountContext, peerId: PeerId, joinAs: PeerId, initialCall: CachedChannelData.ActiveCall?, initialInfo: GroupCallInfo? = nil, internalId: CallSessionInternalId = CallSessionInternalId(), joinHash: String? = nil, peer: Peer? = nil) -> GroupCallContext {
+
+private func startGroupCall(context: AccountContext, peerId: PeerId, joinAs: PeerId, initialCall: CachedChannelData.ActiveCall?, initialInfo: GroupCallInfo? = nil, internalId: CallSessionInternalId = CallSessionInternalId(), joinHash: String? = nil, peer: Peer? = nil) -> GroupCallContext? {
     
     
     
-    return GroupCallContext(call: PresentationGroupCallImpl(accountContext: context, initialCall: initialCall, internalId: internalId, peerId: peerId, invite: joinHash, joinAsPeerId: joinAs, initialInfo: initialInfo, isStream: initialCall?.isStream ?? initialCall?.isStream ?? initialInfo?.isStream ?? false), peerMemberContextsManager: context.peerChannelMemberCategoriesContextsManager)
+    /*return GroupCallContext(call: PresentationGroupCallImpl(accountContext: context, initialCall: initialCall, internalId: internalId, peerId: peerId, invite: joinHash, joinAsPeerId: joinAs, initialInfo: initialInfo, isStream: initialCall?.isStream ?? initialCall?.isStream ?? initialInfo?.isStream ?? false), peerMemberContextsManager: context.peerChannelMemberCategoriesContextsManager)
+*/
+    return nil
 }
 
 func createVoiceChat(context: AccountContext, peerId: PeerId, displayAsList: [FoundPeer]? = nil, canBeScheduled: Bool = false) {
@@ -2944,13 +2954,14 @@ func createVoiceChat(context: AccountContext, peerId: PeerId, displayAsList: [Fo
             initialCall = nil
         }
         
-        return showModalProgress(signal: requestOrJoinGroupCall(context: context, peerId: peerId, joinAs: joinAs, initialCall: initialCall) |> castError(CreateGroupCallError.self), for: context.window)
+        return showModalProgress(signal: requestOrJoinGroupCall(context: context, peerId: peerId, joinAs: joinAs, initialCall: initialCall)! |> castError(CreateGroupCallError.self), for: context.window)
     } |> deliverOnMainQueue
     
     _ = requestCall.start(next: { result in
         switch result {
-        case let .success(callContext), let .samePeer(callContext):
+        /*case let .success(callContext), let .samePeer(callContext):
             applyGroupCallResult(context.sharedContext, callContext)
+        */
         default:
             alert(for: context.window, info: strings().errorAnError)
         }
