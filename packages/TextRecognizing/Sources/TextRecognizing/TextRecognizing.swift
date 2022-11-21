@@ -145,11 +145,11 @@ public final class TextRecognizing {
                     subscriber.putNext(.finish(image: cgImage, text: cached.texts))
                     subscriber.putCompletion()
                 } else {
-                    do {
+                    /*do {
                         try requestHandler.perform([request])
                     } catch {
                         subscriber.putError(.generic)
-                    }
+                    }*/
                 }
             }))
             

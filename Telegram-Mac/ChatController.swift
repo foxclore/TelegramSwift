@@ -5863,6 +5863,11 @@ class ChatController: EditableViewController<ChatControllerView>, Notifable, Tab
                         if !items.isEmpty {
                             items.append(ContextSeparatorItem())
                         }
+                        
+                        if peer.isGroup || peer.isSupergroup || peer.isUser {
+                            items.append(ContextMenuItem("Jump to top", itemImage: MenuAnimation.menu_collapse.value))
+                        }
+                        
                         if peer.canManageDestructTimer && context.peerId != peer.id {
                             
                             let best:(Int32) -> MenuAnimation = { value in
